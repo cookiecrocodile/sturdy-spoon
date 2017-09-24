@@ -58,7 +58,7 @@ namespace Receptbank.Controllers
                 message == ManageMessageId.ChangePasswordSuccess ? "Ditt lösenord har ändrats."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
+                : message == ManageMessageId.Error ? "Ett fel har inträffat."
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
@@ -66,6 +66,7 @@ namespace Receptbank.Controllers
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
+                User = User.Identity.Name,
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),

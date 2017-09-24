@@ -1,0 +1,39 @@
+﻿@model  Receptbank.ViewModels.RecipeSearchViewModel
+
+@{
+    ViewBag.Title = "Sök recept";
+}
+<container>
+    <div class="row">
+        <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12">
+            <h2>@ViewBag.Title</h2>
+        </div>
+    </div>
+    <div class="green rounded-div">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <form>
+                    <input class="form-control large-inline" />
+                    <button class="icon-button" type="submit"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12">
+                @foreach (var item in Model.Categories.Where(c => c.IsInclusive))
+            {
+                    <label><input type="checkbox" name="@item.Id">@item.Name.ToLower()</label>
+                }
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12">
+                @foreach (var item in Model.Categories.Where(c => !c.IsInclusive))
+            {
+                    <label><input type="radio" name="exclusiveCategory" value="@item.IsInclusive">@item.Name.ToLower()</label>
+                }
+            </div>
+        </div>
+    </div>
+    
+</container>
