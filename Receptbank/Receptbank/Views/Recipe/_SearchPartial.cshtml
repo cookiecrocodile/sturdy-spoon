@@ -1,29 +1,28 @@
 ﻿@model  Receptbank.ViewModels.RecipeSearchViewModel
 
-@{
-    ViewBag.Title = "Sök recept";
-}
-<script src="~/Scripts/search.js"></script>
-<container>
 
-    @*<div class="row">
+
+    <div class="row">
         <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12">
             <h2>@ViewBag.Title</h2>
         </div>
     </div>
     <div class="green rounded-div">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <form method="post" action="~/Recipe/SearchResult">
-                    <input class="form-control large-inline" id="searchBox" name="searchBox"/>
-                    <button class="icon-button" type="submit" id="searchButton"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button>
-                </form>
-            </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <form method="post" action="~/Recipe/SearchResult">
+                <input class="form-control large-inline" id="searchBox" name="searchBox" />
+                <button class="icon-button" type="submit" id="searchButton"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button>
+            </form>
         </div>
+    </div>
+
+    @if (Model != null)
+    { 
         <div class="row">
             <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12">
                 @foreach (var item in Model.Categories.Where(c => c.IsInclusive))
-            {
+                {
                     <label><input type="checkbox" name="@item.Id">@item.Name.ToLower()</label>
                 }
             </div>
@@ -31,15 +30,18 @@
         <div class="row">
             <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12">
                 @foreach (var item in Model.Categories.Where(c => !c.IsInclusive))
-            {
+                {
                     <label><input type="radio" name="exclusiveCategory" value="@item.IsInclusive">@item.Name.ToLower()</label>
                 }
             </div>
         </div>
-    </div>
-    <div id="searchResults">
+    }
 
-    </div>*@
+</div>
 
 
-</container>
+
+
+
+
+
