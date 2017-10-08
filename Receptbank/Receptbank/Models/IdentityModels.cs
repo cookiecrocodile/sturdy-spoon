@@ -41,7 +41,7 @@ namespace Receptbank.Models
             recipe.HasMany(r => r.Categories);
             recipe.HasMany(r => r.Tags);
             recipe.HasMany(r => r.Notes)
-                .WithRequired(n => n.Recipe);
+                   .WithRequired(n => n.Recipe);
            
 
             base.OnModelCreating(modelBuilder);

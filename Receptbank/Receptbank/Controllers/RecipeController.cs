@@ -60,7 +60,15 @@ namespace Receptbank.Controllers
 
         public ActionResult Add()
         {
-            return View();
+            AddRecipeViewModel model = new AddRecipeViewModel();
+
+            using (ApplicationDbContext context = new ApplicationDbContext())
+            {
+                var categories = context.Categories.ToList();
+                model.Categories = categories;
+            }
+
+            return View(model);
         }
 
         public ActionResult Edit()

@@ -1,22 +1,70 @@
-﻿@model Receptbank.Models.Recipe
+﻿@model Receptbank.ViewModels.AddRecipeViewModel
 
 @{
     ViewBag.Title = "Lägg till recept";
 }
 
-<container>
-    <div class="row">
-        <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12">
-            <h2>@ViewBag.Title</h2>
-        </div>
+<div class="row">
+    <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12">
+        <h2>@ViewBag.Title</h2>
     </div>
-    <div class="row">
-        <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12">
-           <p>Välj fil</p>
-            <input type="file" name="file" id="file" />
-         </div>
-    </div>
+</div>
 
-</container>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <form method="post" action="~/StorageApi/AddToStorage" id="addRecipeForm">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label>Receptnamn</label>
+                    <input class="form-control" id="recipeName" name="recipeName" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12" id="checkboxDiv">
+                    <label>Kategori</label>
+                    @foreach (var item in Model.Categories.OrderBy(c =>c.Name))
+                    {
+                        <label><input type="checkbox" class="checkbox-inline" name="@item.Id">@item.Name.ToLower()</label>
+                    }
+                </div>
+            </div>
+            @*<div class="row">
+                <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12">
+                    @foreach (var item in Model.Categories.Where(c => !c.IsInclusive))
+                    {
+                        <label><input type="radio" class="radio-inline" name="exclusiveCategory" value="@item.IsInclusive">@item.Name.ToLower()</label>
+                    }
+                </div>
+            </div>*@
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label>Fil</label>
+                    <input type="file" name="fileLocation" id="fileLocation"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label>Sökord</label>
+                    <textarea rows="4" class="form-control" name="tags" id="tags"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <button class="btn btn-default" id="addButton">Lägg till</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <ul id="validation"> Validation</ul>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/addrecipe.js"></script>
+
+
+
 
 
